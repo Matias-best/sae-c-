@@ -1,0 +1,47 @@
+fonction candidateInitialization() : renvoie tableau_de string
+debut
+    declarer number : entier_naturel;
+    afficher("Combien y a t-il de listes de candidats ?");
+    ligne_suivante;
+    saisir(number);
+    declarer listOfLists : tableau_de [number] string;
+    declarer candidatesList : string;
+    afficher("Vous allez rentrer toutes les listes de candidats une par une.");
+    ligne_suivante;
+    pour (i variant_de 0 a number-1) 
+    faire
+        afficher("Entrez la liste numéro ", i+1, " : ");
+        saisir(candidatesList);
+        afficher(candidatesList);
+        ligne_suivante;
+    ffaire
+    renvoie listOfLists;
+fin
+
+fonction ballot(candidatesList : in tableau_de string) : renvoie tableau_de entier_naturel
+debut
+    declarer result : entier_naturel;
+    declarer listOfResults : tableau_de [taille(candidatesList)] string;
+    afficher("Vous allez rentrer les résultats pour chaque listes de candidats.");
+    ligne_suivante;
+    pour (i variant_de 0 a taille(candidatesList) - 1) 
+    faire
+        afficher("Entrez le résultat de la liste numéro ", i+1, " : ");
+        saisir(result);
+        afficher(result);
+        ligne_suivante;
+        listOfResults[i] <- result;
+    ffaire
+    renvoie listOfResults;
+fin
+
+
+fonction hondtMethod() : renvoie string
+debut
+    declarer candidatesList : string <- candidateInitialization();
+    declarer resultsList : string <- ballot(candidatesList);
+    declarer seats : entier_naturel;
+    afficher("Combien y a t-il de sièges à pourvoir ?");
+    ligne_suivante;
+    saisir(number);
+fin
