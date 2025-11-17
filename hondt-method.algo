@@ -10,7 +10,7 @@ debut
     ligne_suivante;
     pour (i variant_de 0 a number-1) 
     faire
-        afficher("Entrez la liste numéro ", i+1, " : ");
+        afficher("Entrez le nom de la liste numéro ", i+1, " : ");
         saisir(candidatesList);
         afficher(candidatesList);
         ligne_suivante;
@@ -24,7 +24,7 @@ debut
     declarer listOfResults : tableau_de [taille(candidatesList)] string;
     afficher("Vous allez rentrer les résultats pour chaque listes de candidats.");
     ligne_suivante;
-    pour (i variant_de 0 a taille(candidatesList) - 1) 
+    pour (i variant_de 0 a taille(candidatesList) - 1)
     faire
         afficher("Entrez le résultat de la liste numéro ", i+1, " : ");
         saisir(result);
@@ -38,10 +38,29 @@ fin
 
 fonction hondtMethod() : renvoie string
 debut
-    declarer candidatesList : string <- candidateInitialization();
-    declarer resultsList : string <- ballot(candidatesList);
+    declarer candidatesList : tableau_de string <- candidateInitialization();
+    declarer resultsList : tableau_de entier_naturel <- ballot(candidatesList);
+    declarer quotientsList : tableau_de entier_naturel <- 1;
     declarer seats : entier_naturel;
+    declarer largest : entier_naturel;
+    declarer elected : tableau_de [seats] string;
     afficher("Combien y a t-il de sièges à pourvoir ?");
     ligne_suivante;
     saisir(number);
+    afficher("Voici la liste des résultats : ");
+    ligne_suivante;
+    pour (i variant_de 0 a seats - 1)
+    faire
+        largest <- 0;
+        pour (j variant_de 1 a taille(resultsList) - 1)
+        faire
+            si (resultsList[largest] < resultsList[j]) largest <- j;
+        ffaire
+        elected[i] <- candidatesList[largest];
+        candidatesList[largest] <- (candidatesList[largest] * quotientsList[largest]) / (quotientsList[largest] + 1)
+        quotientsList[largest] <- quotientsList[largest] + 1;
+        afficher(i, " : ", elected[i]);
+        ligne_suivante;
+    ffaire
+    renvoie elected;
 fin
