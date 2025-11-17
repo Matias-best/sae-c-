@@ -10,21 +10,15 @@ pour (i variant_de 1 à taille(nbcandidats) // tout les nom des candidats
         afficher ("nom du candidat ",i,":" )
         saisir(candidats[i]);
     ffaire
-declarer vote -> tableau_de entier_naturel;
 pour (i variant_de 1 à nbelecteurs)
     faire 
      declarer classement -> tableau_de entier_naturel de taille nbelecteurs;
         afficher ("electeur",i,"taper votre classement :");
-        pour (j variant_de 1 à nbcandidats)
-            faire 
-                afficher ("candidat en position ",j,":classement[i]);
-            ffaire
-        ajouter (classement,vote);
+        saisir(classement);
     ffaire
-
-pour (i variant_de 1 à taille(vote))
+pour (i variant_de 1 à classement)
     faire 
-        classement <- vote[i];
+        classement[i];
          pour (j variant_de 1 a nbCandidats)
             faire
          declarer points : entier_naturel;
