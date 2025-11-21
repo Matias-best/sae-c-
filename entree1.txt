@@ -1,0 +1,49 @@
+//liste des candidats
+Macron
+Hollande
+Sarkozy
+chirac
+Mitterand
+//voila la liste des electeurs
+AROUSSI BENTATA
+Adam
+1
+2
+3
+4
+5
+ACEMYAN DE OLIVEIRA
+Ewan
+2
+1
+3
+5
+4
+ACH                     
+Sofia
+3
+1
+5
+4
+2
+AGGAB
+Mohammed
+4
+1
+2
+5
+3
+AHAMED
+Nasser
+1
+5
+2
+3
+4
+ALLARD
+Loan
+2
+1
+3
+5
+4

@@ -14,9 +14,16 @@ pour (i variant_de 0 à taille(nbcandidats)-1)// tout les nom des candidats
     ffaire
 pour (i variant_de 0 a taille(nbelecteurs))
     faire 
-     declarer classement -> tableau_de entier_naturel de taille(nbelecteurs);
-        afficher ("electeur",i,"taper votre classement :");
-        saisir(classement);
+      // Déclaration et saisie des classements des électeurs
+    declarer classements -> tableau_de entier_naturel de taille(nbelecteurs)
+    pour (i variant_de 0 a taille(nbelecteurs) - 1)
+    faire
+        Afficher("Électeur ", i, " taper votre classement : ")
+        Pour (j variant de 0 a taille(nbcandidats) - 1)
+        faire
+            Saisir(classements[i][j])  // Saisie du classement pour chaque electeur
+        ffaire
+    ffaire
     ffaire
 declarer points : entier_naturel;
 declarer score : entier_naturel;
@@ -40,6 +47,7 @@ declarer gagnant : caractere;
 pour (i variant_de taille(candidats)-1)
 faire 
         si (score[i] > maxscore)
+        pour (v variant_de 0 a taille(candidats)-1)
             maxscore <- score[i];
             gagnant <- candidats[i];
         fsi

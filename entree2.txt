@@ -1,0 +1,49 @@
+//liste des glaces
+Macron
+Hollande
+Sarkozy
+chirac
+Mitterand
+//voila la liste des electeurs
+AROUSSI BENTATA
+Adam
+5
+4
+3
+2
+1
+ACEMYAN DE OLIVEIRA
+Ewan
+1
+3
+2
+4
+5
+ACH                     
+Sofia
+2
+5
+3
+4
+1
+AGGAB
+Mohammed
+1
+2
+3
+4
+5
+AHAMED
+Nasser
+5
+1
+4
+2
+3
+ALLARD
+Loan
+2
+4
+5
+3
+1
