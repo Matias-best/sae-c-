@@ -106,14 +106,15 @@ int main()
     int nbelecteurs = litUnEntier();
 
     // Lire les classements des électeurs
-    vector<int> classements(nbelecteurs, vector<int>(candidats.size()));
+    vector<int> classements(nbelecteurs, vector<int>( candidats.size()));
     for (int i = 0; i < nbelecteurs; i=i+1) {
         for (int j = 0; j < candidats.size(); j=j+1) {
-            >> classements[i][j];
+            file >> classements[i][j];
         }
     }
     int score;
-    for (i=0;i<candidats;i=i+1)
-
-
+    for (int i=0;i<candidats.size();i=i+1)
+    {
+        score = 0;
+    }
 }
