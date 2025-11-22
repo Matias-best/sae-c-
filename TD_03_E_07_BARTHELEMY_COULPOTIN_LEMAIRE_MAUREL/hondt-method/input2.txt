@@ -1,0 +1,77 @@
+// Valeur des constantes
+//
+// CANDIDATENUMBER = 6
+// PARTICIPANTNUMBER = 60
+// SEATS = 5
+//
+// Liste des principaux parties politiques allemands candidats aux elections europeennes de 2024
+//
+Christlich Demokratische Union Deutschlands
+Sozialdemokratische Partei Deutschlands
+Bundnis 90/Die Grunen
+Freie Demokratische Partei
+Die Linke
+Alternative fur Deutschland
+//
+// Liste des votants
+//
+6
+1
+3
+1
+4
+1
+3
+5
+4
+5
+5
+4
+3
+3
+1
+5
+6
+5
+6
+5
+5
+5
+5
+3
+6
+3
+4
+1
+3
+1
+5
+2
+5
+4
+6
+4
+3
+5
+6
+5
+6
+6
+6
+5
+1
+5
+6
+6
+4
+3
+5
+6
+2
+6
+2
+2
+5
+4
+5
+5
