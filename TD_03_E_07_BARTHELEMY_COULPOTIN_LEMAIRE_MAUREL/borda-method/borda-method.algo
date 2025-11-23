@@ -1,53 +1,51 @@
 algorithme Borda
 debut
-declarer  nbcandidats -> entier_naturel;
+declarer  nbcandidats : entier_naturel;
 afficher ("Nombre de candidats : ");
 saisir (nbcandidats);
-declarer nbelecteurs -> entier_naturel;
+declarer nbelecteurs : entier_naturel;
 afficher ("Nombre d'électeurs : ");
 saisir(nbelecteurs);
-declarer candidats -> tableau_de entier_naturel de taille (nbcandidats);   
-pour (i variant_de 0 à taille(nbcandidats)-1)// tout les nom des candidats
+declarer candidats : tableau_de caractere de taille (nbcandidats);   
+pour (i variant_de 0 à taille(candidats)-1)// tout les nom des candidats
     faire
         afficher ("nom du candidat ",i,":" )
         saisir(candidats[i]);
     ffaire
-pour (i variant_de 0 a taille(nbelecteurs))
+declarer choix: tableau_de entier_naturel de taille(nbelecteurs, candidats); // tableau des choix des électeurs
+pour (i variant_de 0 a taille(choix)-1)
     faire 
-      // Déclaration et saisie des classements des électeurs
-    declarer classements -> tableau_de entier_naturel de taille(nbelecteurs)
-    pour (i variant_de 0 a taille(nbelecteurs) - 1)
-    faire
-        Afficher("Électeur ", i, " taper votre classement : ")
-        Pour (j variant de 0 a taille(nbcandidats) - 1)
-        faire
-            Saisir(classements[i][j])  // Saisie du classement pour chaque electeur
-        ffaire
-    ffaire
+        afficher("electeur",i+1,"choix :");
+         pour(j variant_de 0 a taille(candidats)-1) 
+            faire
+                saisir(choix[i][j]); // saisie des choix de chaque électeur
+            ffaire
     ffaire
 declarer points : entier_naturel;
-declarer score : entier_naturel;
-pour (i variant_de 0 a taille(classement)-1)
+declarer score : tableau_de entier_naturel;
+pour (i variant_de 0 a taille(candidats)-1)
     faire 
-        classement[i];
-         pour (j variant_de 0 a taille(candidats)-1)
+        score[i] <- 0;
+    ffaire
+pour (i variant_de 0 a taille(choix)-1) 
+    faire 
+         pour (j variant_de 0 a taille(candidats)-1) 
             faire
-                points <- nbcandidats -1 - j;
-            ffaire
-        pour (v variant_de 0 a taille(candidats)-1)
-        faire
-            si (classement[i] vaut candidats[v])
-                score[v] <- score[v] + points ;
-            fsi
-        ffaire
+                pour (v variant_de 0 a taille(candidats)-1) 
+                faire
+                    si (choix[i][j] vaut candidats[v]) // si le candidat choisi par l'électeur i à la position j est le candidat v
+                        points <- nbcandidats - 1 - j;
+                        score[v] <- score[v] + points ;
+                    fsi
+                ffaire     
+             ffaire
     ffaire
 declarer maxscore : entier_naturel;
-maxscore <- -1;
+maxscore <- 0;
 declarer gagnant : caractere;
 pour (i variant_de taille(candidats)-1)
 faire 
         si (score[i] > maxscore)
-        pour (v variant_de 0 a taille(candidats)-1)
             maxscore <- score[i];
             gagnant <- candidats[i];
         fsi
@@ -58,5 +56,4 @@ faire
      afficher("le candidat", candidats[i],"à",score[i], "points");
 ffaire
 afficher("le gagnant selon la methode de Borda est", gagnant);
-
 fin
