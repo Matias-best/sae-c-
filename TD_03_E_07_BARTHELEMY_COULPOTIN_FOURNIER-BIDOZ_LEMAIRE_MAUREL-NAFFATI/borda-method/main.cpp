@@ -35,7 +35,8 @@ int litUnEntier (){
     return stoi(uneChaine);
 }
 
-struct participant {
+
+/*struct participant {
     string nom;
     string prenom;
     int glacePref;
@@ -58,7 +59,7 @@ void affichVectParticipants (const vector<participant> & vPart){
         cout << part.glacePref << endl;
     }
 }
-
+*/
 int main()
 {
     //cout << "Hello World!" << endl;
@@ -99,33 +100,36 @@ int main()
     unsigned nbelecteur = 6;
     vector <string> candidats(nbcandidats);
     vector <string> electeurs(nbelecteur);
-    for(unsigned i=0;i<=candidats.size()-1; i=i+1)
+    for(unsigned int i=0;i<=candidats.size()-1; i=i+1)
     {
         candidats[i]=litUneString();
     }
-    for(unsigned i=0;i<=electeurs.size()-1; i=i+1)
+    for(unsigned int i=0;i<=electeurs.size()-1; i=i+1)
     {
         electeurs[i]=litUneString();
     }
 
     vector<vector<string>> choix(electeurs.size(), vector<string>(candidats.size()));
-    for (unsigned i=0;i<=choix.size()-1;i=i+1)
+    for (unsigned int i=0;i<=choix.size()-1;i=i+1)
     {
-        for (unsigned j=0;j<=candidats.size()-1;j=j+1)
+        for (unsigned int j=0;j<=candidats.size()-1;j=j+1)
         {
-            choix[i][j] = litUnEntier();
+            choix[i][j] = litUneString();
         }
 
     }
     unsigned points;
-    vector<unsigned> score(nbcandidats, 0);
-
-    for(unsigned i=0;i<=choix.size()-1;i=i+1)
+    vector<unsigned> score(nbcandidats);
+    for(unsigned int i=0;i<=candidats.size();i=i+1)
+    {
+        score[i]=0;
+    }
+    for(unsigned int i=0;i<=choix.size()-1;i=i+1)
     {
 
-        for(unsigned j=0;j<=candidats.size()-1;j=j+1)
+        for(unsigned int j=0;j<=candidats.size()-1;j=j+1)
         {
-            for(unsigned v=0;v<=candidats.size()-1;v=v+1)
+            for(unsigned int v=0;v<=candidats.size()-1;v=v+1)
             {
                 if(choix[i][j]==candidats[v])
                 {
@@ -136,10 +140,10 @@ int main()
 
         }
     }
-    unsigned maxscore;
+    unsigned int maxscore;
     maxscore= 0;
     string gagnant;
-    for (unsigned i=0;i<=candidats.size()-1;i=i+1)
+    for (unsigned int i=0;i<=candidats.size()-1;i=i+1)
     {
         if(score[i]>maxscore)
         {
@@ -147,10 +151,6 @@ int main()
             gagnant = candidats[i];
         }
     }
-    for (unsigned i=0;i<=candidats.size()-1;i=i+1)
-    {
-        cout<<"le candidat"<<candidats[i]<<" a "<<score[i]<<" points"<<endl;
-    }
-    cout <<"le gagnant selon la methode de borda est "<<gagnant<<endl;
+    cout << gagnant << endl;
     return 0;
 }

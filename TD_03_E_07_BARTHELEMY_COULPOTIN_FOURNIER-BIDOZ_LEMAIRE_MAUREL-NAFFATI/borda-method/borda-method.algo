@@ -6,13 +6,13 @@ saisir (nbcandidats);
 declarer nbelecteurs : entier_naturel;
 afficher ("Nombre d'électeurs : ");
 saisir(nbelecteurs);
-declarer candidats : tableau_de caractere de taille (nbcandidats);   
+declarer candidats : tableau_de string de taille (nbcandidats);   
 pour (i variant_de 0 à taille(candidats)-1)// tout les nom des candidats
     faire
         afficher ("nom du candidat ",i,":" )
         saisir(candidats[i]);
     ffaire
-declarer choix: tableau_de entier_naturel de taille(nbelecteurs, candidats); // tableau des choix des électeurs
+declarer choix: tableau_de string de taille(nbelecteurs, candidats); // tableau des choix des électeurs
 pour (i variant_de 0 a taille(choix)-1)
     faire 
         afficher("electeur",i+1,"choix :");
@@ -21,8 +21,7 @@ pour (i variant_de 0 a taille(choix)-1)
                 saisir(choix[i][j]); // saisie des choix de chaque électeur
             ffaire
     ffaire
-declarer points : entier_naturel;
-declarer score : tableau_de entier_naturel;
+declarer points : entier_naturel; 
 pour (i variant_de 0 a taille(candidats)-1)
     faire 
         score[i] <- 0;
@@ -42,7 +41,65 @@ pour (i variant_de 0 a taille(choix)-1)
     ffaire
 declarer maxscore : entier_naturel;
 maxscore <- 0;
-declarer gagnant : caractere;
+declarer gagnant : string;
+pour (i variant_de taille(candidats)-1)
+faire 
+        si (score[i] > maxscore)
+            maxscore <- score[i];
+            gagnant <- candidats[i];
+        fsi
+ffaire
+
+pour (i variant_de taille(candidats)-1)
+faire 
+     afficher("le candidat", candidats[i],"à",score[i], "points");
+ffaire
+afficher("le gagnant selon la methode de Borda est", gagnant);
+fin
+lgorithme Borda
+debut
+declarer  nbcandidats : entier_naturel;
+afficher ("Nombre de candidats : ");
+saisir (nbcandidats);
+declarer nbelecteurs : entier_naturel;
+afficher ("Nombre d'électeurs : ");
+saisir(nbelecteurs);
+declarer candidats : tableau_de string de taille (nbcandidats);   
+pour (i variant_de 0 à taille(candidats)-1)// tout les nom des candidats
+    faire
+        afficher ("nom du candidat ",i,":" )
+        saisir(candidats[i]);
+    ffaire
+declarer choix: tableau_de string de taille(nbelecteurs, candidats); // tableau des choix des électeurs
+pour (i variant_de 0 a taille(choix)-1)
+    faire 
+        afficher("electeur",i+1,"choix :");
+         pour(j variant_de 0 a taille(candidats)-1) 
+            faire
+                saisir(choix[i][j]); // saisie des choix de chaque électeur
+            ffaire
+    ffaire
+declarer points : entier_naturel; 
+pour (i variant_de 0 a taille(candidats)-1)
+    faire 
+        score[i] <- 0;
+    ffaire
+pour (i variant_de 0 a taille(choix)-1) 
+    faire 
+         pour (j variant_de 0 a taille(candidats)-1) 
+            faire
+                pour (v variant_de 0 a taille(candidats)-1) 
+                faire
+                    si (choix[i][j] vaut candidats[v]) // si le candidat choisi par l'électeur i à la position j est le candidat v
+                        points <- nbcandidats - 1 - j;
+                        score[v] <- score[v] + points ;
+                    fsi
+                ffaire     
+             ffaire
+    ffaire
+declarer maxscore : entier_naturel;
+maxscore <- 0;
+declarer gagnant : string;
 pour (i variant_de taille(candidats)-1)
 faire 
         si (score[i] > maxscore)
