@@ -1,6 +1,6 @@
 ```bash
 /
-├── TD_03_E_07
+├── TD_03_E_07_BARTHELEMY_COULPOTIN_FOURNIER-BIDOZ_LEMAIRE_MAUREL-NAFFATI
 │   ├── borda-method
 │   │   ├── main.algo
 │   │   ├── main.cpp
