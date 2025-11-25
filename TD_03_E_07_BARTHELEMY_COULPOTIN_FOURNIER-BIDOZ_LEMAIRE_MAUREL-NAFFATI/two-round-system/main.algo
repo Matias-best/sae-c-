@@ -1,0 +1,167 @@
+fonction supprimerElem(tab : in_out tableau_de entier_naturel, Kpos : entier_naturel) : renvoie tableau_de entier_naturel
+debut
+    declarer tmp : tableau_de entier_naturel <- tab[Kpos];
+    pour (i variant_de Kpos a taille(tab)) 
+    faire
+        tab[i] <- tab[i + 1];
+    ffaire
+    tab.redimentionner(taille(tab) - 1);
+    renvoie tmp;
+fin
+
+fonction insererElem(tab : in_out tableau_de entier_naturel, Kpos : entier_naturel, Kval : entier_naturel)
+debut
+    tab.ajouter(entier_naturel);
+    pour (i variant_de taille(tab) a Kpos) 
+    faire
+        tab[i] <- tab[i - 1];
+    ffaire
+    tab[Kpos] = Kval;
+fin
+
+fonction deplacerElem(tab : in_out tableau_de entier_naturel, KposInit : entier_naturel, KposFin : entier_naturel)
+debut
+    insererElem(tab, KposFin, supprimerElem(tab, KposInit));
+fin
+
+fonction scrutin()
+debut
+    declarer NB_Candidats : entier_naturel <- 5; // Déclare et initialise la variable NB_Candidats
+    declarer NB_Electeurs : entier_naturel <- 0; // Déclare et initialise la variable NB_Electeurs
+    declarer Candidat : tableau_de [NB_Candidats] string; // Déclare et initialise un tableau de string représentant les candidats
+    pour (i variant_de 0 a NB_Candidats) 
+    faire
+        saisir(Candidat[i])
+    ffaire
+    declarer Compte : tableau_de [taille(Candidat)] entier_naturel <- 0; // Déclare et initialise un tableau d'entier naturel
+    declarer Compte_Pourcent : tableau_de [taille(Candidat)] entier_naturel <- 0; // Déclare et initialise un tableau d'entier naturel
+    declarer vote : entier_naturel <- 0; // Déclare et initialise la variable vote
+    declarer Compteur : entier_naturel <- 0; // Déclare et initialise la variable Compteur
+    declarer Compteur_tour : entier_naturel <- 0; // Déclare et initialise la variable Compteur_tour
+    declarer Pourcentage : entier_naturel <- 0; // Déclare et initialise la variable Pourcentage
+    declarer Max1 : entier_naturel <- 0; // Déclare et initialise la variable Max1
+    declarer Max2 : entier_naturel <- 0; // Déclare et initialise la variable Max2
+    declarer Gagnant : entier_naturel <- 0; // Déclare et initialise la variable Gagnant
+    declarer Gagnant_majoritaire : booléen <- faux; // Déclare et met a faux le booléen Gagnant_majoritaire
+
+    tant_que (Gagnant_majoritaire vaut faux) // Vérifie que le booléen Gagnant_majoriataire n'est pas vrais
+    faire
+        si (Compteur_tour vaut 0)
+            afficher("Bonjour, nous cherchons a élire un président! voici la liste de candidat disponible Candidat A, Candidat B, Candidat C. Le système ne propose pas de gestion en cas d'égalité."); // Affiche un message
+            ligne_suivante();
+            afficher("Avant de commencé veuillez rentré le nombre d'électeur"); // Affiche un message
+            ligne_suivante();
+            saisir(NB_Electeurs); // Attend la saisis de la variable NB_Electeurs
+            Compteur <- NB_Electeurs; // Définis Compteur a la valeur NB_Electeurs
+        sinon
+            afficher("Nous sommes a présent au ", Compteur_tour, "eme tours"); // Affiche un message
+            ligne_suivante();
+            afficher("Pour rappelle nous avons ", NB_Electeur, " d'électeur"); // Affiche un message
+            ligne_suivante();
+            afficher("Les candidat encore encore en piste sont ", Candidat[Max1], " avec ", Compte[Max1], " de votes soit,  ", Compte_Pourcent[Max1], "%"); // Affiche le 1er candidat qualifié
+            ligne_suivante();
+            afficher("Le second est", Candidat[Max2], " avec ", Compte[Max2], " de votes soit,  ", Compte_Pourcent[Max2], "%"); // Affiche le 2eme candidat qualifié
+            ligne_suivante();
+            Compteur <- NB_Electeur; // Remet le compteur a NB_Electeur
+            deplacerElem (Candidat,Max1,0); // Utilise la fonction deplacerElem pour déplacer des éléments
+            deplacerElem (Candidat,Max2,1); // Utilise la fonction deplacerElem pour déplacer des éléments
+            deplacerElem (Compte,Max1,0); // Utilise la fonction deplacerElem pour déplacer des éléments
+            deplacerElem (Compte,Max2,1); // Utilise la fonction deplacerElem pour déplacer des éléments
+            deplacerElem (Compte_Pourcent,Max1,0); // Utilise la fonction deplacerElem pour déplacer des éléments
+            deplacerElem (Compte_Pourcent,Max2,1); // Utilise la fonction deplacerElem pour déplacer des éléments
+            supprimerElem (Candidat,2); // Utilise la fonction supprimerElem pour supprimer des éléments
+            supprimerElem (Compte,2); // Utilise la fonction supprimerElem pour supprimer des éléments
+            supprimerElem (Compte_Pourcent,2); // Utilise la fonction supprimerElem pour supprimer des éléments
+            Compte[0] <- 0;
+            Compte[1] <- 1;
+        fsi
+        faire
+            afficher("Saisir le numéro de candidat pour qui vous souhaitez voté :"); // Affiche un message
+            ligne_suivante();
+            saisir(vote); // Attend la saisi de la variable vote
+
+            si (vote > taille(Candidat) OU_SINON vote <= 0) // Boucle si avec condition que vote soit plus grand que la taille du tableau Candidat
+                afficher("Numéro incorrect"); // Affiche le message d'érreur si vrais
+                ligne_suivante();
+                afficher("Veuillez saisir un numéro de candidat valide"); // Affiche un message
+                ligne_suivante();
+                Compteur <- Compteur + 1; // incrémente de 1 la variable Compteur
+            fsi
+
+            si (vote vaut 1) // Si vote est égale à 1 alors
+                Compte[0] <- Compte[0]+1; // Ajouté 1 dans la case 0 du tableau Compte
+            sinon si (vote vaut 2) // Si vote est égale à 2 alors
+                Compte[1] <- Compte[1]+1; // Ajouté 1 dans la case 1 du tableau Compte
+            sinon si (vote vaut 3) // Si vote est égale à  3 alors
+                Compte[2] <- Compte[2]+1; // Ajouté 1 dans la case 2 du tableau Compte
+            sinon si (vote vaut 4) // Si vote est égale à 4 alors
+                Compte[3] <- Compte[3]+1; // Ajouté 1 dans la case 3 du tableau Compte
+            sinon si (vote vaut 5) // Si vote est égale à  5 alors
+                Compte[4] <- Compte[4]+1; // Ajouté 1 dans la case 4 du tableau Compte
+            fsi
+            Compteur <- Compteur - 1; // Désincrémente de 1 la variable Compteur
+            Compteur_tour <- Compteur_tour + 1;
+        ffaire
+        tant_que(Compteur ne_vaut_pas 0);// Condition de sortie la boucle tant_que ( il faut que Compteur soit a 0 ce qui assure que tout le monde a voté )
+
+        afficher("Tout le monde a voté ? "); // Affiche un message
+        ligne_suivante();
+        afficher("L'heure du décompte a sonné, voici les résultat"); // Affiche un message
+        ligne_suivante();
+
+        declarer gagnant_trouve : booléen <- faux; // Déclare et initialise a faux un booléen qui détermine si on a un gagnant ou non
+
+        pour (i variant_de 0 a taille(Candidat)) // Boucle pour qui parcours les différents tableaux
+        faire
+            pour (j variant_de 0 a taille(Compte_Pourcent)) // Boucle pour qui parcour le tableau des pourcentages
+            faire
+                Pourcentage <- Compte[i] * 100 / NB_Electeurs; // Définis la variable provisoire pourcentage
+                Compte_Pourcent[i] <- Pourcentage; // Met pourcentage dans la ieme case du tableau pourcent
+            ffaire
+            afficher(Candidat[i], ":", Compte[i], " votes, soit ", Compte_Pourcent[i], "%");
+            ligne_suivante();
+        ffaire
+
+        pour (i variant_de 0 a taille(Compte_Pourcent)) // Boucle pour qui parcours les différents tableaux
+        faire
+            si (Compte_Pourcent[i] > 50) // On recherche si un pourcentage et strictement plus élevé que 50%
+                Gagnant <- i; //Sauvgarde la valeur i dans la variable de Gagnant
+                gagnant_trouve <- vrai; // Si il existe le booléen est vrais sinon il est faux
+            fsi
+        ffaire
+        si (gagnant_trouve vaut faux){ // Si le gagnant_trouve est vrais alors on a un gagnant
+            pour (i variant_de 0 a taille(Compte_Pourcent)) // Boucle pour qui parcour le tableau des pourcentage
+            faire
+                si (Compte_Pourcent[i] > Compte_Pourcent[Max1]) // On vérifie que le porcentage courant et bien le pourcentage le plus grand
+                    Max1 <- i; // Sauvegarde du plus grand pourcentage
+                fsi
+            ffaire
+
+            pour (j variant_de 0 a taille(Compte_Pourcent)) // Boucle pour qui parcour le tableau des pourcentage
+            faire
+                si (j ne_vaut_pas ET_ALORS Compte_Pourcent[j] > Compte_Pourcent[Max2]) // On vérifie que le porcentage courant et bien le pourcentage le plus grand et qu'il est différent de Max1
+                    Max2 <- j; // Sauvegarde du 2eme plus grand pourcentage
+                fsi
+            ffaire
+
+            si ( Max2 vaut Max1){ //Concerne le cas d'égalité mais il est traité comme si aucun des deux candidat a eu la majorité c'est juste pour un affichage d'un message spécifique
+                afficher("Les candidat sont a égalité ", Candidat[Max1], ", ", Candidat[Max2], "sont tout les deux arriver avec ", Compte_Pourcent[Max1], "% des voies"); // affiche un message
+                ligne_suivante();
+            sinon
+                afficher("Les candidat ayant obtenue le plus de voie sont ", Candidat[Max1], ": ", Compte_Pourcent[Max1], "%"); // Affiche les candidats ayant obtenue le plus de votes
+                ligne_suivante();
+                afficher(Candidat[Max2], ": ", Compte_Pourcent[Max2], "%");
+                ligne_suivante();
+                Gagnant_majoritaire <- faux; // Mets le bouléen Gagnant_majoritaire a faux
+            fsi
+        sinon
+            afficher(" Il y a un gagnant "); // affiche un message
+            ligne_suivante();
+            afficher("C'est ", Candidat[Gagnant], " avec ", Compte[Gagnant], "votes, soit ", Compte_Pourcent[Gagnant], "% qui l'emporte."); //Affiche le gagant avec son nombre de vote et le pourcentage correspondant
+            ligne_suivante();
+            afficher("Fin du scrutin, ", "Nombre de votant ", NB_Electeur); // Affiche le nombre d'électeurs
+            ligne_suivante();
+            Gagnant_majoritaire <- true; // Mets le bouléen Gagnant_majoriatiare a vrais
+        fsi
+    ffaire
+fin
