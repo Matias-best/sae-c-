@@ -55,20 +55,20 @@ void deplacerElem (vector<T> & tab, const size_t & posInit, const size_t & posFi
 void scrutin (){
     vector<string> Candidat(NB_CANDIDATS);
     for(unsigned i (0); i < NB_CANDIDATS; ++i) Candidat[i] = litUneString(); // Déclare et initialise un tableau de string représentant les candidats
-    vector<unsigned> Compte(Candidat.size(),0); // Déclare et initialise un tableau d'entier naturel
-    vector<unsigned> Compte_Pourcent(Candidat.size(),0); // Déclare et initialise un tableau d'entier naturel
+    vector<unsigned> Compte(Candidat.size(),0); // Déclare et initialise un tableau d'entiers naturels
+    vector<unsigned> Compte_Pourcent(Candidat.size(),0); // Déclare et initialise un tableau d'entiers naturels
     unsigned vote = 0; // Déclare et initialise la variable vote
     unsigned Compteur = 0; // Déclare et initialise la variable Compteur
-    unsigned Compteur_tour = 0;// Déclare et initialise la variable Compteur_tour
-    unsigned Pourcentage = 0;// Déclare et initialise la variable Pourcentage
+    unsigned Compteur_tour = 0; // Déclare et initialise la variable Compteur_tour
+    unsigned Pourcentage = 0; // Déclare et initialise la variable Pourcentage
     unsigned Max1 = 0; // Déclare et initialise la variable Max1
-    unsigned Max2 = 0;// Déclare et initialise la variable Max2
+    unsigned Max2 = 0; // Déclare et initialise la variable Max2
     unsigned Gagnant = 0; // Déclare et initialise la variable Gagnant
-    bool Gagnant_majoritaire = false; // Déclare et met a faux le booléen Gagnant_majoritaire
+    bool Gagnant_majoritaire = false; // Déclare et met à faux le booléen Gagnant_majoritaire
 
-    while (Gagnant_majoritaire != true) // Vérifie que le booléen Gagnant_majoriataire n'est pas vrais
+    while (Gagnant_majoritaire != true) // Vérifie que le booléen Gagnant_majoriataire n'est pas vrai
     {
-        Compteur = NB_ELECTEURS; // (Re)Définis le compteur a NB_ELECTEURS
+        Compteur = NB_ELECTEURS; // (Re)Définis le compteur à NB_ELECTEURS
         if (Compteur_tour != 0){
             deplacerElem (Candidat,Max1,0); // Utilise la fonction deplacerElem pour déplacer des éléments
             deplacerElem (Candidat,Max2,1); // Utilise la fonction deplacerElem pour déplacer des éléments
@@ -83,7 +83,7 @@ void scrutin (){
             Compte[1] = 1;
         }
         do{
-            vote = litUnEntier(); // Attend la saisi de la variable vote
+            vote = litUnEntier(); // Attend la saisie de la variable vote
 
             if (vote > Candidat.size() || vote <= 0){ // Boucle si avec condition que vote soit plus grand que la taille du tableau Candidat
                 Compteur ++; // incrémente de 1 la variable Compteur
@@ -102,32 +102,32 @@ void scrutin (){
             }
             Compteur--; // Désincrémente de 1 la variable Compteur
             Compteur_tour++;
-        }while(Compteur != 0);// Condition de sortie la boucle tant_que ( il faut que Compteur soit a 0 ce qui assure que tout le monde a voté )
+        }while(Compteur != 0);// Condition de sortie la boucle tant_que ( il faut que Compteur soit à 0 ce qui assure que tout le monde ait voté )
 
-        bool gagnant_trouve = false; // Déclare et initialise a faux un booléen qui détermine si on a un gagnant ou non
+        bool gagnant_trouve = false; // Déclare et initialise à faux un booléen qui détermine si on a un gagnant ou non
 
-        for ( unsigned i = 0; i < Candidat.size(); ++i){ // Boucle pour qui parcours les différents tableaux
-            for (unsigned i=0; i < Compte_Pourcent.size(); i++){ // Boucle pour qui parcour le tableau des pourcentages
+        for ( unsigned i = 0; i < Candidat.size(); ++i){ // Boucle pour qui parcourt les différents tableaux
+            for (unsigned i=0; i < Compte_Pourcent.size(); i++){ // Boucle pour qui parcourt le tableau des pourcentages
                 Pourcentage = Compte[i] * 100 / NB_ELECTEURS; // Définis la variable provisoire pourcentage
-                Compte_Pourcent[i]= Pourcentage; // Met pourcentage dans la ieme case du tableau pourcent
+                Compte_Pourcent[i]= Pourcentage; // Met pourcentage dans la ième case du tableau pourcent
             }
         }
-        for ( unsigned i = 0; i < Compte_Pourcent.size(); ++i){ // Boucle pour qui parcour le tableau des pourcentages
+        for ( unsigned i = 0; i < Compte_Pourcent.size(); ++i){ // Boucle pour qui parcourt le tableau des pourcentages
 
             if (Compte_Pourcent[i] > 50 ){ // On recherche si un pourcentage et strictement plus élevé que 50%
                 Gagnant = i; //Sauvgarde la valeur i dans la variable de Gagnant
-                gagnant_trouve = true; // Si il existe le booléen est vrais sinon il est faux
+                gagnant_trouve = true; // Si il existe le booléen est vrai sinon il est faux
             }
         }
-        if (gagnant_trouve != true){ // Si le gagnant_trouve et vrais alors on a un gagnant
+        if (gagnant_trouve != true){ // Si le gagnant_trouve est vrai alors on a un gagnant
 
-            for (unsigned i = 0; i < Compte_Pourcent.size(); ++i) { // Boucle pour qui parcour le tableau des pourcentage
-                if (Compte_Pourcent[i] > Compte_Pourcent[Max1]) {  // On vérifie que le porcentage courant et bien le pourcentage le plus grand
+            for (unsigned i = 0; i < Compte_Pourcent.size(); ++i) { // Boucle pour qui parcourt le tableau des pourcentages
+                if (Compte_Pourcent[i] > Compte_Pourcent[Max1]) {  // On vérifie que le porcentage courant est bien le pourcentage le plus grand
                     Max1 = i; // Sauvegarde du plus grand pourcentage
                 }
             }
 
-            for (unsigned j = 0; j < Compte_Pourcent.size(); ++j) { // Boucle pour qui parcour le tableau des pourcentage
+            for (unsigned j = 0; j < Compte_Pourcent.size(); ++j) { // Boucle pour qui parcourt le tableau des pourcentages
                 if (j != Max1 && Compte_Pourcent[j] > Compte_Pourcent[Max2]) { // On vérifie que le porcentage courant et bien le pourcentage le plus grand et qu'il est différent de Max1
                     Max2 = j; // Sauvegarde du 2eme plus grand pourcentage
                 }
@@ -135,7 +135,7 @@ void scrutin (){
 
         }else{
             cout << Candidat[Gagnant] << endl; //Affiche le gagant avec son nombre de vote et le pourcentage correspondant
-            Gagnant_majoritaire = true; // Mets le bouléen Gagnant_majoriatiare a vrais
+            Gagnant_majoritaire = true; // Met le bouléen Gagnant_majoriatiare à vrai
         }
     }
 }
