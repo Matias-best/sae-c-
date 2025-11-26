@@ -7,7 +7,7 @@ declarer nbelecteurs : entier_naturel;
 afficher ("Nombre d'électeurs : ");
 saisir(nbelecteurs);
 declarer candidats : tableau_de string de taille (nbcandidats);   
-pour (i variant_de 0 à taille(candidats)-1)// tout les nom des candidats
+pour (i variant_de 0 à taille(candidats)-1)// tous les nom des candidats
     faire
         afficher ("nom du candidat ",i,":" )
         saisir(candidats[i]);
@@ -52,7 +52,7 @@ ffaire
 
 pour (i variant_de taille(candidats)-1)
 faire 
-     afficher("le candidat", candidats[i],"à",score[i], "points");
+     afficher("le candidat", candidats[i],"a",score[i], "points");
 ffaire
 afficher("le gagnant selon la methode de Borda est", gagnant);
 fin
