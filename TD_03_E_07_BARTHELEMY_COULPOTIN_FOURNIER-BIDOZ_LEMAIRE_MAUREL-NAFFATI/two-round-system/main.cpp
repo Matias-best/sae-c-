@@ -54,7 +54,7 @@ void deplacerElem (vector<T> & tab, const size_t & posInit, const size_t & posFi
 
 void scrutin (){
     vector<string> Candidat(NB_CANDIDATS);
-    for(unsigned i (0); i < NB_CANDIDATS; ++i) Candidat[i] = litUneString(); // Déclare et initialise un tableau de string représentant les candidats
+    for(unsigned i (0); i < NB_CANDIDATS; ++i) Candidat[i] = litUneString(); // Déclare et initialise un tableau de strings représentant les candidats
     vector<unsigned> Compte(Candidat.size(),0); // Déclare et initialise un tableau d'entiers naturels
     vector<unsigned> Compte_Pourcent(Candidat.size(),0); // Déclare et initialise un tableau d'entiers naturels
     unsigned vote = 0; // Déclare et initialise la variable vote
@@ -122,7 +122,7 @@ void scrutin (){
         if (gagnant_trouve != true){ // Si le gagnant_trouve est vrai alors on a un gagnant
 
             for (unsigned i = 0; i < Compte_Pourcent.size(); ++i) { // Boucle pour qui parcourt le tableau des pourcentages
-                if (Compte_Pourcent[i] > Compte_Pourcent[Max1]) {  // On vérifie que le porcentage courant est bien le pourcentage le plus grand
+                if (Compte_Pourcent[i] > Compte_Pourcent[Max1]) {  // On vérifie que le pourcentage courant est bien le pourcentage le plus grand
                     Max1 = i; // Sauvegarde du plus grand pourcentage
                 }
             }
@@ -134,7 +134,7 @@ void scrutin (){
             }
 
         }else{
-            cout << Candidat[Gagnant] << endl; //Affiche le gagant avec son nombre de vote et le pourcentage correspondant
+            cout << Candidat[Gagnant] << endl; //Affiche le gagant avec son nombre de votes et le pourcentage correspondant
             Gagnant_majoritaire = true; // Met le bouléen Gagnant_majoriatiare à vrai
         }
     }
